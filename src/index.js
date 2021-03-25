@@ -1,17 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import GanttChart from './GanttChart';
+import './GanttChart.css';
+
+const tasks = [
+  {
+    startDate: new Date('Sun Dec 09 01:36:45 EST 2012'),
+    endDate: new Date('Sun Dec 09 12:36:45 EST 2012'),
+    taskName: 'Alapozás',
+    status: 'RUNNING',
+  },
+  {
+    startDate: new Date('Sun Dec 09 04:56:32 EST 2012'),
+    endDate: new Date('Sun Dec 09 06:35:47 EST 2012'),
+    taskName: 'Falazás',
+    status: 'KILLED',
+  },
+];
+
+const taskStatus = {
+  SUCCEEDED: 'bar',
+  FAILED: 'bar-failed',
+  RUNNING: 'bar-running',
+  KILLED: 'bar-killed',
+};
+
+const taskNames = ['Alapozás', 'Falazás'];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GanttChart tasks={tasks} tickFormat={'%H:%M'} taskTypes={taskNames} taskStatus={taskStatus} />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
